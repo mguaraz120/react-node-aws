@@ -1,12 +1,22 @@
 import React from "react";
 import Head from 'next/head';
 import Link from 'next/link';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+
+Router.onRouteChangeStart = url => NProgress.start()
+Router.onRouteChangeComplete = url => NProgress.done()
+Router.onRouteChangeError = url => NProgress.done()
 
 const Layout = ({children}) => {
 
     const head = () => (
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
-    )
+        <React.Fragment>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+            <link rel='stylesheet' href='/static/css/style.css' />
+        </React.Fragment>
+        )
 
     const nav = () => (
         <ul className="nav nav-tabs bg-warning">
