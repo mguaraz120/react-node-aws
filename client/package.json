@@ -21,6 +21,7 @@
   "homepage": "https://github.com/mguaraz120/react-node-aws#readme",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.27.2",
     "next": "^12.1.6",
     "nprogress": "^0.2.0",
     "react": "^18.1.0",
