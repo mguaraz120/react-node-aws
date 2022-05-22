@@ -8,8 +8,8 @@ AWS.config.update({
 
 const ses = new AWS.SES({ apiVersion: '2010-12-01'})
 
-exports.register =  (req, res) => {
-    const {name, email, password} = req.body
+exports.register = (req, res) => {
+    const { name, email, password } = req.body
     const params = {
         Source: process.env.EMAIL_FROM,
         Destination: {
@@ -20,7 +20,7 @@ exports.register =  (req, res) => {
             Body: {
                 Html: {
                     Charset: 'UTF-8',
-                    Data: `<html><body><h1 style="color:red">Hello${name}</h1><p>Test email</p></body></html>`
+                    Data: `<html><body><h1>Hello ${name}</h1 style="color:red;"><p>Test email</p></body></html>`
                 }
             },
             Subject: {
@@ -30,14 +30,15 @@ exports.register =  (req, res) => {
         }
     };
 
-    const sendEmail = ses.sendEmail(params).promise()
-    sendEmail
+    const sendEmailOnRegister = ses.sendEmail(params).promise();
+
+    sendEmailOnRegister
         .then(data => {
-            console.log('email submitted to SES', data)
-            res.send('Email sent')
+            console.log('email submitted to SES', data);
+            res.send('Email sent');
         })
         .catch(error => {
-            console.log('ses email on register', error)
-            res.send('Email failed')
-        })
-}
+            console.log('ses email on register', error);
+            res.send('email failed');
+        });
+};
