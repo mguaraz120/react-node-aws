@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
 }, {timestamps: true})
 
 //virtual fields
-userSchema.virtual(password)
+userSchema.virtual('password')
  .set(function(password) {
     //create temp variable called _password
     this._password = password
