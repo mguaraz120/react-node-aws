@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Layout from '../components/Layout';
 import axios from 'axios'
 import { showSuccessMessage, showErrorMessage } from'../helpers/alerts'
-
+// import{API} from '../config'
 const Register = () => {
     const [state, setState] = useState({
         name: 'alex',
@@ -39,7 +39,7 @@ const Register = () => {
             })
 
         }catch (error){
-            console.log(response)
+            console.log(error)
             setState({
                 ...state,
                 buttonText:'Register',
