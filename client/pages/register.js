@@ -18,16 +18,16 @@ const Register = () => {
     const handleChange = (name) => e => {
         setState({...state, [name]: e.target.value, error: '', success:'', buttonText:'Register'})
     }
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async e => {
         e.preventDefault()
         setState({...state, buttonText: 'Registering'})
-        // console.table({name, email, password})
-        axios.post(`http://localhost:8000/api/register`, {
-            name,
-            email,
-            password
-        })
-        .then(response => {
+        try{
+            const response = await axios.post(`http://localhost:8000/api/register`, {
+                name,
+                email,
+                password
+            })
             console.log(response)
             setState({
                 ...state,
@@ -37,16 +37,45 @@ const Register = () => {
                 buttonText:'Submitted',
                 success: response.data.message
             })
-        })
-        .catch(error => {
+
+        }catch (error){
             console.log(response)
             setState({
                 ...state,
                 buttonText:'Register',
                 error: error.response.data.error
             })
-        })
+        }
     }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     setState({...state, buttonText: 'Registering'})
+    //     // console.table({name, email, password})
+    //     axios.post(`http://localhost:8000/api/register`, {
+    //         name,
+    //         email,
+    //         password
+    //     })
+    //     .then(response => {
+    //         console.log(response)
+    //         setState({
+    //             ...state,
+    //             name:'',
+    //             email:'',
+    //             password:'',
+    //             buttonText:'Submitted',
+    //             success: response.data.message
+    //         })
+    //     })
+    //     .catch(error => {
+    //         console.log(response)
+    //         setState({
+    //             ...state,
+    //             buttonText:'Register',
+    //             error: error.response.data.error
+    //         })
+    //     })
+    // }
 
     const registerForm = () => (
         <form onSubmit={handleSubmit}>
